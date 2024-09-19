@@ -13,7 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			login: async (email, password) => {
 				try {
-					const response = await fetch("https://miniature-robot-g4xj94pjgrxq29564-3001.app.github.dev/api/login", {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/login`, {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json"
@@ -46,7 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const accessToken = localStorage.getItem("accessToken");
 					if (!accessToken) throw new Error("Token no disponible");
 
-					const response = await fetch("https://miniature-robot-g4xj94pjgrxq29564-3001.app.github.dev/api/current-user", {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/current-user`, {
 						method: "GET",
 						headers: {
 							Authorization: `Bearer ${accessToken}`,
@@ -68,7 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			createUser: async (email, password) => {
 				try {
-					const response = await fetch("https://miniature-robot-g4xj94pjgrxq29564-3001.app.github.dev/api/signup", {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/signup`, {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json"
@@ -98,7 +98,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getCharacters: async () => {
 				try {
-					const response = await fetch("https://miniature-robot-g4xj94pjgrxq29564-3001.app.github.dev/api/people", {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/people`, {
 						method: "GET",
 						headers: { "Content-Type": "application/json" }
 					});
@@ -114,7 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getCharactersInfo: async (id) => {
 				try {
-					const response = await fetch(`https://miniature-robot-g4xj94pjgrxq29564-3001.app.github.dev/api/people/${id}`, {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/people/${id}`, {
 						method: "GET",
 						headers: { "Content-Type": "application/json" }
 					});
@@ -130,7 +130,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getPlanets: async () => {
 				try {
-					const response = await fetch("https://miniature-robot-g4xj94pjgrxq29564-3001.app.github.dev/api/planets", {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/planets`, {
 						method: "GET",
 						headers: { "Content-Type": "application/json" }
 					});
@@ -146,7 +146,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getPlanetsInfo: async (id) => {
 				try {
-					const response = await fetch(`https://miniature-robot-g4xj94pjgrxq29564-3001.app.github.dev/api/planets/${id}`, {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/planets/${id}`, {
 						method: "GET",
 						headers: { "Content-Type": "application/json" }
 					});
@@ -175,7 +175,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Content-Type": "application/json"
 						}
 					};
-					const url = `https://miniature-robot-g4xj94pjgrxq29564-3001.app.github.dev/api/favorite/${type}/${id}`;
+					const url = `${process.env.BACKEND_URL}/api/favorite/${type}/${id}`;
 					const response = await fetch(url, options);
 			
 					if (!response.ok) throw new Error("Error al actualizar favoritos");
@@ -193,7 +193,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return;
 				}
 				try {
-					const response = await fetch("https://miniature-robot-g4xj94pjgrxq29564-3001.app.github.dev/api/users/favorites", {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/users/favorites`, {
 						method: "GET",
 						headers: {
 							"Content-Type": "application/json",
